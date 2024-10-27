@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Rust
+        uses: actions/setup-rust@v1
+        with:
+          rust-version: "stable"
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: "1.5.0"
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v3
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-registry-
+
+      - name: Cache Cargo build
+        uses: actions/cache@v3
+        with:
+          path: target
+          key: ${{ runner.os }}-cargo-build-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-build-
+
+      - name: Build Frontend
+        run: |
+          cd frontend
+          cargo build --release
+
+      - name: Run Frontend Tests
+        run: |
+          cd frontend
+          cargo test --all
+
+      - name: Terraform Init
+        run: |
+          cd infrastructure
+          terraform init
+
+      - name: Terraform Validate
+        run: |
+          cd infrastructure
+          terraform validate
+
+      - name: Run tfsec
+        uses: aquasecurity/tfsec-action@v1
+        with:
+          args: .

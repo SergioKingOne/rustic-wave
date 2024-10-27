@@ -1,0 +1,13 @@
+[workspace]
+members = ["frontend"]
+resolver = "2"
+
+default-members = ["frontend"]
+
+[profile.release]
+debug = true
+
+[profile.dev.package.askama_derive]
+opt-level = 3
+
+[workspace.dependencies]
