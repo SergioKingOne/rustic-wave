@@ -1,0 +1,30 @@
+# Rust
+/target/
+**/*.rs.bk
+
+# IntelliJ
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+# Node
+node_modules/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+
+# AWS
+.aws/
+
+# Logs
+logs/
+*.log
+
+# Misc
+.DS_Store
