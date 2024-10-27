@@ -1,5 +1,5 @@
 # Rust
-/target/
+target/
 **/*.rs.bk
 
 # IntelliJ
@@ -27,3 +27,6 @@ logs/
 
 # Misc
 .DS_Store
+
+# Environment variables
+.env
