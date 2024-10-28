@@ -1,18 +1,3 @@
-variable "domain_name" {
-  description = "The domain name"
-  type        = string
-}
-
-variable "hosted_zone_id" {
-  description = "The Route53 Hosted Zone ID"
-  type        = string
-}
-
-variable "cdn_domain" {
-  description = "The CloudFront distribution domain"
-  type        = string
-}
-
 resource "aws_route53_record" "www" {
   zone_id = var.hosted_zone_id
   name    = var.domain_name

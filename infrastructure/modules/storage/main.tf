@@ -1,13 +1,3 @@
-variable "bucket_name" {
-  description = "The name of the S3 bucket"
-  type        = string
-}
-
-variable "environment" {
-  description = "The deployment environment (dev/prod)"
-  type        = string
-}
-
 resource "aws_s3_bucket" "this" {
   bucket = var.bucket_name
 
@@ -31,9 +21,9 @@ resource "aws_s3_bucket_policy" "this" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action = "s3:GetObject"
-        Effect = "Allow"
-        Resource = "${aws_s3_bucket.this.arn}/*"
+        Action    = "s3:GetObject"
+        Effect    = "Allow"
+        Resource  = "${aws_s3_bucket.this.arn}/*"
         Principal = "*"
       }
     ]

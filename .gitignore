@@ -17,6 +17,8 @@ node_modules/
 *.tfstate.*
 crash.log
 *.tfvars
+.terraform/
+.terraform.lock.hcl
 
 # AWS
 .aws/

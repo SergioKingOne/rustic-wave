@@ -21,7 +21,3 @@ module "dns" {
   hosted_zone_id = var.hosted_zone_id
   cdn_domain = module.cdn.domain_name
 }
-
-output "cdn_domain" {
-  value = module.cdn.domain_name
-}
