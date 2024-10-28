@@ -18,8 +18,8 @@ A modern Infrastructure as Code (IaC) project implementing static website hostin
 
 - Rust and Cargo
 - Trunk (Rust web application bundler)
-- Terraform
-- AWS CLI
+- Terraform v1.9.8
+- AWS CLI v1.22.34
 - GitHub account with repository access
 
 ### Setup Instructions

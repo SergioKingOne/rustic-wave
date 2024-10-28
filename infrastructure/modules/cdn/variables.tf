@@ -3,12 +3,14 @@ variable "bucket_name" {
   type        = string
 }
 
-variable "domain_name" {
-  description = "The domain name for CloudFront"
-  type        = string
-}
+# TODO: Uncomment this when we have a domain name
+# variable "domain_name" {
+#   description = "The domain name for CloudFront"
+#   type        = string
+# }
 
-variable "certificate_arn" {
-  description = "ARN of the SSL certificate"
-  type        = string
-}
+# TODO: Uncomment this when we have a certificate
+# variable "certificate_arn" {
+#   description = "ARN of the SSL certificate"
+#   type        = string
+# }

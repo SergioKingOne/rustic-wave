@@ -13,17 +13,31 @@ variable "storage_bucket_name" {
   type        = string
 }
 
-variable "domain_name" {
-  description = "The domain name for the website"
+# TODO: Uncomment this when we have a domain name
+# variable "domain_name" {
+#   description = "The domain name for the website"
+#   type        = string
+# }
+
+# TODO: Uncomment this when we have a certificate
+# variable "certificate_arn" {
+#   description = "ARN of the SSL certificate"
+#   type        = string
+# }
+
+# variable "hosted_zone_id" {
+#   description = "The Route53 Hosted Zone ID"
+#   type        = string
+# }
+
+variable "aws_access_key_id" {
+  description = "AWS Access Key ID"
   type        = string
+  sensitive   = true
 }
 
-variable "certificate_arn" {
-  description = "ARN of the SSL certificate"
+variable "aws_secret_access_key" {
+  description = "AWS Secret Access Key"
   type        = string
-}
-
-variable "hosted_zone_id" {
-  description = "The Route53 Hosted Zone ID"
-  type        = string
+  sensitive   = true
 }

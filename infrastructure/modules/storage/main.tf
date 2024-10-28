@@ -1,10 +1,6 @@
 resource "aws_s3_bucket" "this" {
   bucket = var.bucket_name
 
-  versioning {
-    enabled = true
-  }
-
   lifecycle {
     prevent_destroy = true
   }
@@ -15,16 +11,25 @@ resource "aws_s3_bucket" "this" {
   }
 }
 
+resource "aws_s3_bucket_versioning" "this" {
+  bucket = aws_s3_bucket.this.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_bucket_policy" "this" {
   bucket = aws_s3_bucket.this.id
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
-        Action    = "s3:GetObject"
-        Effect    = "Allow"
-        Resource  = "${aws_s3_bucket.this.arn}/*"
-        Principal = "*"
+        Action   = "s3:GetObject"
+        Effect   = "Allow"
+        Resource = "${aws_s3_bucket.this.arn}/*"
+        Principal = {
+          AWS = var.cloudfront_oai_arn
+        }
       }
     ]
   })

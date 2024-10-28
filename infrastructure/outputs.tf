@@ -8,7 +8,7 @@ output "storage_bucket" {
   value       = module.storage.bucket_name
 }
 
-output "dns_record" {
-  description = "The Route53 DNS record name"
-  value       = module.dns.record_name
-}
+# output "dns_record" {
+#   description = "The Route53 DNS record name"
+#   value       = module.dns.record_name
+# }
