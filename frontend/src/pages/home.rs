@@ -10,7 +10,7 @@ pub fn home() -> Html {
                     <p class="hero-subtitle">{ "Learn AWS infrastructure by example" }</p>
                     <div class="cta-buttons">
                         <a href="/infrastructure" class="button primary">{ "View Infrastructure" }</a>
-                        <a href="https://github.com/yourusername/project" class="button secondary" target="_blank">
+                        <a href="https://github.com/SergioKingOne/rustic-wave" class="button secondary" target="_blank">
                             { "View Source" }
                         </a>
                     </div>

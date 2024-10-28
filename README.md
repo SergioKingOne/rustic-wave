@@ -17,6 +17,7 @@ A modern Infrastructure as Code (IaC) project implementing static website hostin
 ### Prerequisites
 
 - Rust and Cargo
+- Trunk (Rust web application bundler)
 - Terraform
 - AWS CLI
 - GitHub account with repository access
@@ -49,16 +50,14 @@ A modern Infrastructure as Code (IaC) project implementing static website hostin
    terraform apply -var-file=environments/dev/terraform.tfvars
    ```
 
-5. **Build Frontend**
+5. **Build and Run Frontend**
 
    ```bash
-   cd ../frontend
-   cargo build --release
-   ```
+   # Install Trunk if not already installed
+   cargo install trunk
 
-6. **Deploy Frontend**
-   ```bash
-   ../scripts/deploy.sh
+   # Build and serve the frontend
+   trunk serve --release frontend/index.html
    ```
 
 ## CI/CD Pipeline
