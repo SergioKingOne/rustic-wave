@@ -1,5 +1,5 @@
 [workspace]
-members = ["frontend"]
+members = ["frontend", "config"]
 resolver = "2"
 
 default-members = ["frontend"]
