@@ -8,7 +8,7 @@ mod tests {
 
     #[wasm_bindgen_test]
     fn test_header_render() {
-        let header = Renderer::<rustic_wave_frontend::components::header::Header>::new();
+        let header = Renderer::<rustic_wave_frontend_lib::components::header::Header>::new();
         header.render();
         // Add assertions as needed
     }

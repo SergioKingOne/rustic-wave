@@ -32,3 +32,6 @@ logs/
 
 # Environment variables
 .env
+
+# Frontend
+dist/

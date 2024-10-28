@@ -17,12 +17,13 @@ chrono = "0.4"
 wasm-bindgen-test = "0.3"
 
 [lib]
-src = "src/lib.rs"
+name = "rustic_wave_frontend_lib"
+path = "src/lib.rs"
 crate-type = ["cdylib", "rlib"]
-
-[profile.release]
-opt-level = "s"
 
 [[bin]]
 name = "rustic_wave_frontend"
-src = "src/main.rs"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = "s"
