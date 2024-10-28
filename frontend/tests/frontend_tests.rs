@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use rustic_wave_frontend_lib as frontend;
     use wasm_bindgen_test::*;
     use yew::Renderer;
 
@@ -8,7 +8,7 @@ mod tests {
 
     #[wasm_bindgen_test]
     fn test_header_render() {
-        let header = Renderer::<rustic_wave_frontend_lib::components::header::Header>::new();
+        let header = Renderer::<frontend::components::header::Header>::new();
         header.render();
         // Add assertions as needed
     }
