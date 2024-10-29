@@ -11,13 +11,10 @@ export AWS_REGION
 
 echo "Deploying frontend to S3..."
 
-# Print current directory
-echo "Current directory: $(pwd)"
-
 # Build the frontend
 trunk build --release frontend/index.html
 
-# Sync the frontend to S3 (removed --acl public-read flag)
+# Sync the frontend to S3
 aws s3 sync frontend/dist s3://rustic-wave --delete
 
 echo "Deployment completed."

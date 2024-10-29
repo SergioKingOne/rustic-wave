@@ -18,10 +18,14 @@ jobs:
         with:
           toolchain: "1.81.0"
 
+      - name: Install Trunk
+        run: |
+          cargo install trunk
+
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: "1.5.0"
+          terraform_version: "1.9.8"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
