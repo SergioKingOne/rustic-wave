@@ -1,0 +1,14 @@
+target/
+.git/
+.gitignore
+.dockerignore
+.env
+*.tfstate
+*.tfstate.*
+.terraform/
+docs/
+README.md
+tests/
+*.md
+*.log
+dist/

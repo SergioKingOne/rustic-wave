@@ -60,6 +60,37 @@ A modern Infrastructure as Code (IaC) project implementing static website hostin
    trunk serve --release frontend/index.html
    ```
 
+## Docker
+
+### Prerequisites
+
+- Docker installed on your system
+
+### Building and Running with Docker
+
+1. **Build the Docker image**
+
+   ```bash
+   docker build -t rustic-wave .
+   ```
+
+2. **Run the container**
+   ```bash
+   docker run \
+     -e AWS_ACCESS_KEY_ID=your_access_key \
+     -e AWS_SECRET_ACCESS_KEY=your_secret_key \
+     -e AWS_REGION=your_region \
+     -e STORAGE_BUCKET_NAME=your_bucket_name \
+     rustic-wave
+   ```
+
+### Environment Variables
+
+- `AWS_ACCESS_KEY_ID`: Your AWS access key
+- `AWS_SECRET_ACCESS_KEY`: Your AWS secret access key
+- `AWS_REGION`: Target AWS region for deployment
+- `STORAGE_BUCKET_NAME`: Target S3 bucket name for deployment
+
 ## CI/CD Pipeline
 
 - **CI**: Defined in `.github/workflows/ci.yml`
