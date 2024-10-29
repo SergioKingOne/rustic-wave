@@ -42,8 +42,7 @@ jobs:
           terraform init \
             -backend-config="bucket=${{ secrets.S3_BUCKET }}" \
             -backend-config="region=${{ secrets.AWS_REGION }}"
-          terraform apply -auto-approve \
-            -var="s3_bucket=${{ secrets.S3_BUCKET }}"
+          terraform apply -auto-approve
 
       - name: Build Frontend
         run: |
