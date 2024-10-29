@@ -4,8 +4,8 @@
   become: yes
   vars:
     terraform_version: "1.9.8"
-    aws_cli_version: "1.22.34"
-    rust_version: "stable"
+    aws_cli_version: "1.22.34-1"
+    rust_version: "1.81.0"
 
   tasks:
     - name: Install system dependencies
@@ -22,7 +22,7 @@
 
     - name: Install Rust and Cargo
       shell: |
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain {{ rust_version }}
       args:
         creates: "{{ ansible_env.HOME }}/.cargo/bin/rustc"
 
@@ -67,7 +67,7 @@
 
     - name: Install AWS CLI
       apt:
-        name: awscli
+        name: "awscli={{ aws_cli_version }}"
         state: present
 
     - name: Build project
