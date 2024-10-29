@@ -6,12 +6,12 @@ provider "aws" {
 
 module "cdn" {
   source      = "./modules/cdn"
-  bucket_name = var.storage_bucket_name
+  bucket_name = var.bucket_name
 }
 
 module "storage" {
   source             = "./modules/storage"
-  bucket_name        = var.storage_bucket_name
+  bucket_name        = var.bucket_name
   environment        = var.environment
   cloudfront_oai_arn = module.cdn.origin_access_identity_arn
 }

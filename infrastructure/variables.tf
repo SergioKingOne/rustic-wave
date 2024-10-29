@@ -8,7 +8,7 @@ variable "environment" {
   type        = string
 }
 
-variable "storage_bucket_name" {
+variable "bucket_name" {
   description = "The name of the storage S3 bucket"
   type        = string
 }
