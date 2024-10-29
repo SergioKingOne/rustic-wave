@@ -24,33 +24,35 @@ A modern Infrastructure as Code (IaC) project implementing static website hostin
 
 ### Setup Instructions
 
-1. **Clone the repository**
+1. **Automated Setup (Recommended)**
 
-   ```bash$$
+   ```bash
+   # Install Ansible if not already installed
+   sudo apt-get update && sudo apt-get install -y ansible
+
+   # Run the development environment setup playbook
+   ansible-playbook ansible/setup-dev.yml
+   ```
+
+2. **Manual Setup**
+
+   ```bash
    git clone https://github.com/yourusername/rustc-wave.git
    cd rustc-wave
    ```
 
-2. **Configure AWS Credentials**
-
    ```bash
    aws configure
    ```
-
-3. **Initialize Terraform**
 
    ```bash
    cd infrastructure
    terraform init
    ```
 
-4. **Deploy Infrastructure**
-
    ```bash
    terraform apply -var-file=environments/dev/terraform.tfvars
    ```
-
-5. **Build and Run Frontend**
 
    ```bash
    # Install Trunk if not already installed

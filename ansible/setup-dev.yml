@@ -1,0 +1,89 @@
+---
+- name: Setup Development Environment
+  hosts: localhost
+  become: yes
+  vars:
+    terraform_version: "1.9.8"
+    aws_cli_version: "1.22.34"
+    rust_version: "stable"
+
+  tasks:
+    - name: Install system dependencies
+      apt:
+        name:
+          - build-essential
+          - pkg-config
+          - libssl-dev
+          - curl
+          - unzip
+          - git
+        state: present
+        update_cache: yes
+
+    - name: Install Rust and Cargo
+      shell: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      args:
+        creates: "{{ ansible_env.HOME }}/.cargo/bin/rustc"
+
+    - name: Add Cargo bin to PATH
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.bashrc"
+        line: 'export PATH="$HOME/.cargo/bin:$PATH"'
+        create: yes
+
+    - name: Install Trunk
+      become: no
+      shell: |
+        . $HOME/.cargo/env
+        cargo install trunk
+      args:
+        creates: "{{ ansible_env.HOME }}/.cargo/bin/trunk"
+        executable: /bin/bash
+
+    - name: Install wasm-pack
+      become: no
+      shell: |
+        . $HOME/.cargo/env
+        cargo install wasm-pack --version 0.12.1
+      args:
+        creates: "{{ ansible_env.HOME }}/.cargo/bin/wasm-pack"
+        executable: /bin/bash
+
+    - name: Install Terraform
+      block:
+        - name: Download Terraform
+          get_url:
+            url: "https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip"
+            dest: /tmp/terraform.zip
+            mode: '0644'
+
+        - name: Extract Terraform
+          unarchive:
+            src: /tmp/terraform.zip
+            dest: /usr/local/bin
+            mode: '0755'
+            remote_src: yes
+
+    - name: Install AWS CLI
+      apt:
+        name: awscli
+        state: present
+
+    - name: Build project
+      become: no
+      shell: |
+        source $HOME/.cargo/env
+        cd {{ playbook_dir }}/.. && \
+        cargo build --release
+      args:
+        creates: "{{ playbook_dir }}/../target/release/rustic_wave_frontend"
+
+    - name: Clean up temporary files
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /tmp/terraform.zip
+        - /tmp/awscliv2.zip
+        - /tmp/aws 
