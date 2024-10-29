@@ -32,16 +32,14 @@ jobs:
 
       - name: Deploy Infrastructure
         env:
-          TF_VAR_storage_bucket_name: ${{ secrets.S3_BUCKET }}
+          TF_VAR_storage_bucket_name: ${{ secrets.STORAGE_BUCKET_NAME }}
           TF_VAR_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           TF_VAR_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
-          TF_VAR_environment: prod
+          TF_VAR_environment: dev
         run: |
           cd infrastructure
-          terraform init \
-            -backend-config="bucket=${{ secrets.S3_BUCKET }}" \
-            -backend-config="region=${{ secrets.AWS_REGION }}"
+          terraform init
           terraform apply -auto-approve
 
       - name: Build Frontend
