@@ -54,12 +54,10 @@ jobs:
 
       - name: Build Frontend
         run: |
-          cd frontend
           trunk build --release
 
       - name: Run Frontend Tests
         run: |
-          cd frontend
           cargo test --all
 
       - name: Terraform Init
