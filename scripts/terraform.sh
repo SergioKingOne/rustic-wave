@@ -11,6 +11,8 @@ export TF_VAR_aws_secret_access_key=$AWS_SECRET_ACCESS_KEY
 export TF_VAR_aws_region=$AWS_REGION
 export TF_VAR_bucket_name=$BUCKET_NAME
 export TF_VAR_hosted_zone_id=$HOSTED_ZONE_ID
+export TF_VAR_environment=$ENVIRONMENT
+export TF_VAR_domain_name=$DOMAIN_NAME
 
 # Export AWS environment variables
 export AWS_ACCESS_KEY_ID=$TF_VAR_aws_access_key_id
@@ -19,6 +21,8 @@ export AWS_REGION=$TF_VAR_aws_region
 
 # Set working directory to infrastructure
 cd infrastructure
+
+terraform import module.storage.aws_s3_bucket.this $BUCKET_NAME
 
 # Run terraform commands with the passed arguments
 terraform "$@"
