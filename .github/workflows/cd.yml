@@ -47,6 +47,7 @@ jobs:
         run: |
           cd infrastructure
           terraform init
+          terraform import module.storage.aws_s3_bucket.this ${{ secrets.BUCKET_NAME }}
           terraform apply -auto-approve
 
       - name: Install Trunk
