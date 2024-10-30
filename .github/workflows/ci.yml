@@ -27,10 +27,6 @@ jobs:
         with:
           toolchain: "1.81.0"
 
-      - name: Install Trunk
-        run: |
-          cargo install trunk
-
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -51,6 +47,10 @@ jobs:
           key: ${{ runner.os }}-cargo-build-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-build-
+
+      - name: Install Trunk
+        run: |
+          cargo install trunk
 
       - name: Build Frontend
         run: |

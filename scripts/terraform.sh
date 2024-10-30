@@ -13,6 +13,7 @@ export TF_VAR_bucket_name=$BUCKET_NAME
 export TF_VAR_hosted_zone_id=$HOSTED_ZONE_ID
 export TF_VAR_environment=$ENVIRONMENT
 export TF_VAR_domain_name=$DOMAIN_NAME
+export TF_VAR_create_dns=$CREATE_DNS
 
 # Export AWS environment variables
 export AWS_ACCESS_KEY_ID=$TF_VAR_aws_access_key_id

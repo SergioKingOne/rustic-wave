@@ -41,3 +41,9 @@ variable "aws_secret_access_key" {
   type        = string
   sensitive   = true
 }
+
+variable "create_dns" {
+  description = "Whether to create the DNS record"
+  type        = bool
+  default     = false
+}

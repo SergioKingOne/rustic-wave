@@ -18,6 +18,7 @@ module "storage" {
 }
 
 module "dns" {
+  count          = var.create_dns ? 1 : 0
   source         = "./modules/dns"
   domain_name    = var.domain_name
   hosted_zone_id = var.hosted_zone_id

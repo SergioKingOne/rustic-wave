@@ -44,8 +44,9 @@ resource "aws_cloudfront_distribution" "this" {
   }
 
   tags = {
-    Environment = "prod"
-    Name        = "CDN for ${var.bucket_name}"
+    Environment = "dev"
+    Name        = "CDN-${var.bucket_name}"
+    ManagedBy   = "Terraform"
   }
 }
 
