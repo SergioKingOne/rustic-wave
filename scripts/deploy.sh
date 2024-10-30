@@ -12,7 +12,7 @@ export AWS_REGION
 echo "Deploying frontend to S3..."
 
 # Build the frontend
-trunk build --release frontend/index.html
+trunk build --release
 
 # Sync the frontend to S3
 aws s3 sync frontend/dist s3://rustic-wave --delete

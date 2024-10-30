@@ -55,7 +55,7 @@ jobs:
       - name: Build Frontend
         run: |
           cd frontend
-          trunk build --release frontend/index.html
+          trunk build --release
 
       - name: Run Frontend Tests
         run: |
