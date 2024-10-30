@@ -1,5 +1,7 @@
 ```mermaid
 graph TD
+    DNS[Route 53 DNS] -->|DNS Resolution| CloudFront
+    User -->|HTTPS Request| DNS
     User -->|HTTPS Request| CloudFront[CloudFront CDN]
     CloudFront -->|Origin Request| S3[S3 Static Website]
     GitHub -->|Deploy| S3
