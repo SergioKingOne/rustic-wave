@@ -13,22 +13,22 @@ variable "bucket_name" {
   type        = string
 }
 
-# TODO: Uncomment this when we have a domain name
-# variable "domain_name" {
-#   description = "The domain name for the website"
-#   type        = string
-# }
+variable "domain_name" {
+  description = "The domain name for the website"
+  type        = string
+  default     = "sergio-dev-projects.click"
+}
 
-# TODO: Uncomment this when we have a certificate
+# We'll uncomment this when we set up SSL
 # variable "certificate_arn" {
 #   description = "ARN of the SSL certificate"
 #   type        = string
 # }
 
-# variable "hosted_zone_id" {
-#   description = "The Route53 Hosted Zone ID"
-#   type        = string
-# }
+variable "hosted_zone_id" {
+  description = "The Route53 Hosted Zone ID"
+  type        = string
+}
 
 variable "aws_access_key_id" {
   description = "AWS Access Key ID"

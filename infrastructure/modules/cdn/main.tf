@@ -12,6 +12,7 @@ resource "aws_cloudfront_distribution" "this" {
   is_ipv6_enabled     = true
   comment             = "CDN for ${var.bucket_name}"
   default_root_object = "index.html"
+  aliases             = [var.domain_name]
 
   default_cache_behavior {
     target_origin_id       = "S3-${var.bucket_name}"
@@ -41,6 +42,9 @@ resource "aws_cloudfront_distribution" "this" {
 
   viewer_certificate {
     cloudfront_default_certificate = true
+    # We'll update this when we have SSL set up
+    # acm_certificate_arn = var.certificate_arn
+    # ssl_support_method  = "sni-only"
   }
 
   tags = {

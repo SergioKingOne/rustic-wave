@@ -69,6 +69,8 @@ func TestInfrastructure(t *testing.T) {
 			"bucket_name":          envVars["BUCKET_NAME"],
 			"aws_access_key_id":    envVars["AWS_ACCESS_KEY_ID"],
 			"aws_secret_access_key": envVars["AWS_SECRET_ACCESS_KEY"],
+			"domain_name":          "sergio-dev-projects.click",
+			"hosted_zone_id":       os.Getenv("HOSTED_ZONE_ID"),
 		},
 		EnvVars: map[string]string{
 			"AWS_ACCESS_KEY_ID":     envVars["AWS_ACCESS_KEY_ID"],
@@ -84,4 +86,7 @@ func TestInfrastructure(t *testing.T) {
 
 	cdnDomain := terraform.Output(t, terraformOptions, "cdn_domain")
 	assert.NotEmpty(t, cdnDomain)
+
+	dnsRecord := terraform.Output(t, terraformOptions, "dns_record")
+	assert.Equal(t, "sergio-dev-projects.click", dnsRecord)
 }
