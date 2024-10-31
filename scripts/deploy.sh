@@ -8,6 +8,7 @@ source .env
 export AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY
 export AWS_REGION
+export RUSTFLAGS='-C target-feature=+bulk-memory'
 
 echo "Deploying frontend to S3..."
 
