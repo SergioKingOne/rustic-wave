@@ -50,14 +50,20 @@ resource "aws_cloudfront_distribution" "this" {
     BucketName  = var.bucket_name
   }
 
-  aliases = [var.domain_name]
-
   lifecycle {
-    prevent_destroy = true
     ignore_changes = [
       tags,
       comment,
-      enabled
+      enabled,
+      viewer_certificate,
+      restrictions,
+      trusted_signers,
+      trusted_key_groups,
+      default_cache_behavior[0].trusted_signers,
+      default_cache_behavior[0].trusted_key_groups,
+      default_cache_behavior[0].forwarded_values[0].headers,
+      default_cache_behavior[0].forwarded_values[0].query_string_cache_keys,
+      default_cache_behavior[0].forwarded_values[0].cookies[0].whitelisted_names
     ]
   }
 }
