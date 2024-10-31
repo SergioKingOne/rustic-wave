@@ -3,6 +3,8 @@
 # Load environment variables from .env file
 if [ -f .env ]; then
     export $(cat .env | xargs)
+else
+    echo "Warning: .env file not found. Proceeding with existing environment variables."
 fi
 
 # Export AWS credentials as TF_VAR variables

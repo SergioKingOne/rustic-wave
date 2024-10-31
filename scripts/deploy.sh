@@ -2,7 +2,11 @@
 set -e
 
 # Load environment variables
-source .env
+if [ -f .env ]; then
+    export $(cat .env | xargs)
+else
+    echo "Warning: .env file not found. Proceeding with existing environment variables."
+fi
 
 # Export AWS credentials explicitly
 export AWS_ACCESS_KEY_ID

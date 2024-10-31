@@ -47,6 +47,18 @@ resource "aws_cloudfront_distribution" "this" {
     Environment = "dev"
     Name        = "CDN-${var.bucket_name}"
     ManagedBy   = "Terraform"
+    BucketName  = var.bucket_name
+  }
+
+  aliases = [var.domain_name]
+
+  lifecycle {
+    prevent_destroy = true
+    ignore_changes = [
+      tags,
+      comment,
+      enabled
+    ]
   }
 }
 
