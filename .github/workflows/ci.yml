@@ -55,7 +55,7 @@ jobs:
 
       - name: Build Frontend
         run: |
-          trunk build --release
+          RUSTFLAGS='-C target-feature=+bulk-memory' trunk build --release
 
       - name: Run Frontend Tests
         run: |

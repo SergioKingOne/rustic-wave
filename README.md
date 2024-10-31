@@ -31,6 +31,7 @@ Before you begin, ensure you have the following installed:
 ✅ Trunk (Rust web application bundler)  
 ✅ Terraform v1.9.8  
 ✅ AWS CLI v1.22.34  
+✅ Binaryen v120_b  
 ✅ GitHub account with repository access
 
 ### Setup Instructions
@@ -80,7 +81,7 @@ terraform init
 cargo install trunk
 
 # Build and serve the frontend
-trunk serve --release frontend/index.html
+RUSTFLAGS='-C target-feature=+bulk-memory' trunk serve --release
 ```
 
 ## 🔄 CI/CD Pipeline

@@ -50,6 +50,27 @@
         creates: "{{ ansible_env.HOME }}/.cargo/bin/wasm-pack"
         executable: /bin/bash
 
+    - name: Install Binaryen
+      block:
+        - name: Download Binaryen
+          get_url:
+            url: "https://github.com/WebAssembly/binaryen/releases/download/version_120_b/binaryen-version_120_b-x86_64-linux.tar.gz"
+            dest: /tmp/binaryen.tar.gz
+            mode: '0644'
+
+        - name: Extract Binaryen
+          unarchive:
+            src: /tmp/binaryen.tar.gz
+            dest: /tmp
+            remote_src: yes
+
+        - name: Copy wasm-opt to /usr/local/bin
+          copy:
+            src: /tmp/binaryen-version_120_b/bin/wasm-opt
+            dest: /usr/local/bin/wasm-opt
+            mode: '0755'
+            remote_src: yes
+
     - name: Install Terraform
       block:
         - name: Download Terraform
@@ -86,4 +107,6 @@
       with_items:
         - /tmp/terraform.zip
         - /tmp/awscliv2.zip
-        - /tmp/aws 
+        - /tmp/aws
+        - /tmp/binaryen.tar.gz
+        - /tmp/binaryen-version_120_b
