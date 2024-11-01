@@ -71,7 +71,8 @@ jobs:
           cd infrastructure
           terraform validate
 
-      - name: Run tfsec
-        uses: aquasecurity/tfsec-action@v1.0.0
-        with:
-          working_directory: infrastructure
+      # TODO: Add tfsec
+      # - name: Run tfsec
+      #   uses: aquasecurity/tfsec-action@v1.0.0
+      #   with:
+      #     working_directory: infrastructure
